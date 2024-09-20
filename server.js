@@ -1,9 +1,9 @@
 const express = require('express');
-const locationHandler = require('./api/location');  // Importa o código que você escreveu no location.js
+const locationHandler = require('./api/location');  // Caminho para o arquivo location.js
 
 const app = express();
 
-app.get('/api/location.js', locationHandler);
+app.get('/api/location', locationHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
