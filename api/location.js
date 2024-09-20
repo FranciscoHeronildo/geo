@@ -8,7 +8,12 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Latitude e longitude são obrigatórias' });
         }
 
-        const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+        // Fazendo a requisição à API Nominatim com um User-Agent customizado
+        const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (compatible; Vercel/1.0)'
+            }
+        });
 
         if (response.data && response.data.address) {
             const address = response.data.address;
